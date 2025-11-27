@@ -5,9 +5,10 @@ import plotly.express as px
 
 @st.cache_data
 def cargar_datos():
-    url = "https://docs.google.com/spreadsheets/d/1E9VCBy5C_OJrsVeZxqKRsC8EYyki3k3yK7XwDy9VcV/export?format=csv"
-    df = pd.read_csv(url)
+    # Leer el CSV que está dentro del repositorio
+    df = pd.read_csv("caracterizacion.csv")
 
+    # Renombrar columnas
     df = df.rename(columns={
         'sec': 'id',
         '11. Franja horaria en la que estudia': 'franja',
@@ -16,6 +17,7 @@ def cargar_datos():
         '42. ¿Trabaja este periodo mientras estudia?': 'trabaja',
         '55. ¿Frecuencia que utiliza los siguientes medios de comunicación? [Internet]': 'internet'
     })
+
     return df
 
 df = cargar_datos()
